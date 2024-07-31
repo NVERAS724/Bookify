@@ -20,6 +20,12 @@ namespace Bookify.Domain.Apartments
             List<Amenity> amenities) 
             : base(id)
         {
+            Name = name;
+            Description = description;
+            Address = address;
+            Price = price;
+            CleaningFee = cleaningFee;
+            Amenities = amenities;
         }
 
         public Name Name { get; private set; }
