@@ -1,4 +1,5 @@
 ﻿using Bookify.Domain.Abstractions;
+using Bookify.Domain.Users.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,11 @@ namespace Bookify.Domain.Users
         public Email Email { get; private set; } = email;
         public static User Create(FirstName firstName, LastName lastName, Email email)
         {
-            return new(Guid.NewGuid(), firstName, lastName, email);
+            User user = new(Guid.NewGuid(), firstName, lastName, email);
+
+            user.RaiseDomainEvent(new UserCreatedDomainEvent(user.Id));
+
+            return user;
         }
     }
 }
