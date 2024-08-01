@@ -1,5 +1,6 @@
 ﻿using Bookify.Domain.Abstractions;
-using Bookify.Domain.Apartments;
+using Bookify.Domain.Bookings.Events;
+using Bookify.Domain.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +21,7 @@ namespace Bookify.Domain.Bookings
             Money amenitiesUpCharge, 
             Money totalPrice, 
             BookingStatus status, 
-            DateTime createdOnUtc, 
-            DateTime? confirmedOnUtc, 
-            DateTime? rejectedOnUt, 
-            DateTime? completedOnUtc, 
-            DateTime? cancelledOnUtc)
+            DateTime createdOnUtc)
             : base(id)
         {
             ApartmentId = apartmentId;
@@ -36,10 +33,6 @@ namespace Bookify.Domain.Bookings
             TotalPrice = totalPrice;
             Status = status;
             CreatedOnUtc = createdOnUtc;
-            ConfirmedOnUtc = confirmedOnUtc;
-            RejectedOnUt = rejectedOnUt;
-            CompletedOnUtc = completedOnUtc;
-            CancelledOnUtc = cancelledOnUtc;
         }
 
         public Guid ApartmentId { get; private set; }
@@ -57,5 +50,29 @@ namespace Bookify.Domain.Bookings
         public DateTime? CancelledOnUtc{ get; private set; }
 
 
+        public static Booking Reserve(
+            Guid apartmentId,
+            Guid userId,
+            DateRange duration,
+            DateTime utcNow,
+            PricingDetails pricingDetails)
+        {
+            var booking = new Booking(
+                Guid.NewGuid(),
+                apartmentId,
+                userId,
+                duration,
+                pricingDetails.PriceForPeriod,
+                pricingDetails.CleaningFee,
+                pricingDetails.AmenitiesUpCharge,
+                pricingDetails.TotalPrice,
+                BookingStatus.Reversed,
+                utcNow);
+
+
+            booking.RaiseDomainEvent(new BookingReservedDomainEvent(booking.Id));
+
+            return booking;
+        }
     }
 }
