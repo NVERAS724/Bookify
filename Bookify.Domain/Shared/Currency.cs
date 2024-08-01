@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bookify.Domain.Apartments
+namespace Bookify.Domain.Shared
 {
     public record Currency
     {
@@ -23,8 +23,8 @@ namespace Bookify.Domain.Apartments
         }
 
         public static readonly IReadOnlyCollection<Currency> All = new[]
-        { 
-            Usd, 
+        {
+            Usd,
             Eur
         };
     }
