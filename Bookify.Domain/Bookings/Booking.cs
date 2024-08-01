@@ -139,7 +139,7 @@ namespace Bookify.Domain.Bookings
 
             if(currentDate > Duration.Start)
             {
-                return Result.Failure(BookingErrors.AlreadyStarted)
+                return Result.Failure(BookingErrors.AlreadyStarted);
             }
 
             Status = BookingStatus.Cancelled;
