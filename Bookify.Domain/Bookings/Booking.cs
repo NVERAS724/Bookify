@@ -71,7 +71,7 @@ namespace Bookify.Domain.Bookings
                 pricingDetails.CleaningFee,
                 pricingDetails.AmenitiesUpCharge,
                 pricingDetails.TotalPrice,
-                BookingStatus.Reversed,
+                BookingStatus.Reserved,
                 utcNow);
 
 
@@ -84,7 +84,7 @@ namespace Bookify.Domain.Bookings
 
         public Result Confirm(DateTime utcNow)
         {
-            if(Status != BookingStatus.Reversed)
+            if(Status != BookingStatus.Reserved)
             {
                 return Result.Failure(BookingErrors.NotReserved);
             }
@@ -99,7 +99,7 @@ namespace Bookify.Domain.Bookings
 
         public Result Rejected(DateTime utcNow)
         {
-            if (Status != BookingStatus.Reversed)
+            if (Status != BookingStatus.Reserved)
             {
                 return Result.Failure(BookingErrors.NotReserved);
             }
@@ -115,7 +115,7 @@ namespace Bookify.Domain.Bookings
 
         public Result Complete(DateTime utcNow)
         {
-            if (Status != BookingStatus.Reversed)
+            if (Status != BookingStatus.Reserved)
             {
                 return Result.Failure(BookingErrors.NotConfirmed);
             }
