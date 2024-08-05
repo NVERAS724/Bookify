@@ -17,7 +17,7 @@ namespace Bookify.Infrastructure.Configurations
                 .HasMaxLength(200)
                 .HasConversion(x => x.Value, x => new FirstName(x));
 
-            builder.Property(x => x.Lastname)
+            builder.Property(x => x.LastName)
                 .HasMaxLength(200)
                 .HasConversion(x => x.Value, x => new LastName(x));
 
