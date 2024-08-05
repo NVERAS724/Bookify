@@ -10,7 +10,7 @@ namespace Bookify.Infrastructure
 {
     public sealed class ApplicationDbContext : DbContext, IUnitOfWork
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public ApplicationDbContext(DbContextOptions options)
             : base(options)
         {
         }
