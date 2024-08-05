@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Bookify.Application.Abstractions.Clock;
+using Bookify.Infrastructure.Clock;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -15,7 +17,7 @@ namespace Bookify.Infrastructure
             IConfiguration configuration)
         {
 
-
+            services.AddTransient<IDateTimeProvider, DateTimeProvider>();
 
             return services;
         }
