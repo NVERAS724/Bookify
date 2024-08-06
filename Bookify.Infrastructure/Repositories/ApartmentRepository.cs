@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bookify.Domain.Apartments;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,14 @@ using System.Threading.Tasks;
 
 namespace Bookify.Infrastructure.Repositories
 {
-    internal class ApartmentRepository
+    internal sealed class ApartmentRepository : Repository<Apartment>, IApartmentRepository
     {
+        public ApartmentRepository(ApplicationDbContext dbContext)
+            : base(dbContext) { }
+
+        public Task<Apartment?> GetByIdAsync(Guid id, CancellationToken cancellation = default)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
