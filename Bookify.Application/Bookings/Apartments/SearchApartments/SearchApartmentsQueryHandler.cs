@@ -55,7 +55,7 @@ namespace Bookify.Application.Bookings.Apartments.SearchApartments
                 SELECT 1 
                 FROM bookings as b
                 WHERE 
-                    b.appartment_id = a.id AND  
+                    b.apartment_id = a.id AND  
                     b.duration_start <= @EndDate AND    
                     b.duration_end >= @StartDate AND
                     b.status = ANY(@ActiveBookingStatuses)
