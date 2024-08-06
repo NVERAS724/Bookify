@@ -11,7 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{4A8A7F52-2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookify.Application", "Bookify.Application\Bookify.Application.csproj", "{C9B17441-8D7F-440A-A9B3-A80ED07CAA09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookify.Infrastructure", "Bookify.Infrastructure\Bookify.Infrastructure.csproj", "{89F94979-C2A5-495D-ADB4-1052ADD66C56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookify.Infrastructure", "Bookify.Infrastructure\Bookify.Infrastructure.csproj", "{89F94979-C2A5-495D-ADB4-1052ADD66C56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookify.Api", "Bookify.Api\Bookify.Api.csproj", "{3ACE283E-1D86-4DE9-91A6-5A00F1BB999A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{89F94979-C2A5-495D-ADB4-1052ADD66C56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89F94979-C2A5-495D-ADB4-1052ADD66C56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89F94979-C2A5-495D-ADB4-1052ADD66C56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ACE283E-1D86-4DE9-91A6-5A00F1BB999A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ACE283E-1D86-4DE9-91A6-5A00F1BB999A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ACE283E-1D86-4DE9-91A6-5A00F1BB999A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ACE283E-1D86-4DE9-91A6-5A00F1BB999A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{1F721279-9495-4B20-B286-EC02165F29F7} = {F59A3DD0-9385-4D8C-9EB9-542EB3F9CA49}
 		{C9B17441-8D7F-440A-A9B3-A80ED07CAA09} = {F59A3DD0-9385-4D8C-9EB9-542EB3F9CA49}
 		{89F94979-C2A5-495D-ADB4-1052ADD66C56} = {F59A3DD0-9385-4D8C-9EB9-542EB3F9CA49}
+		{3ACE283E-1D86-4DE9-91A6-5A00F1BB999A} = {F59A3DD0-9385-4D8C-9EB9-542EB3F9CA49}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {34B0FA26-26D4-41FB-9BFB-0C99DFFE0D38}
