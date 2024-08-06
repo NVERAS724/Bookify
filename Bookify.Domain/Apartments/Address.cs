@@ -11,6 +11,6 @@ namespace Bookify.Domain.Apartments
         string State,
         string ZipCode,
         string City,
-        string Steet
+        string Street
         );
 }
