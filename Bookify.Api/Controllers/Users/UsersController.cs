@@ -1,4 +1,5 @@
-﻿using Bookify.Application.RegisterUser;
+﻿
+using Bookify.Application.Users.RegisterUser;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
