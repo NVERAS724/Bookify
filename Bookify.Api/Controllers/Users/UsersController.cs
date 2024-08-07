@@ -16,6 +16,18 @@ namespace Bookify.Api.Controllers.Users
 
         public UsersController(ISender sender) => _sender = sender;
 
+
+        [HttpGet("me")]
+        [Authorize(Roles = Roles.Registered)]
+        public async Task<IActionResult> GetLoggedInUserV2(CancellationToken cancellationToken)
+        {
+            var query = new GetLoggedInUserQuery();
+
+            var result = await _sender.Send(query, cancellationToken);
+
+            return Ok(result.Value);
+        }
+
         [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterUserRequest request, CancellationToken cancellationToken)
