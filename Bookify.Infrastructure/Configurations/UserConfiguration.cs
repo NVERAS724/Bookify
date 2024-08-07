@@ -27,6 +27,8 @@ namespace Bookify.Infrastructure.Configurations
 
             builder.HasIndex(user => user.Email).IsUnique();
 
+            builder.HasIndex(user => user.IdentityId).IsUnique();
+
         }
     }
 }
