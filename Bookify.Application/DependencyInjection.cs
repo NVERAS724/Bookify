@@ -15,7 +15,7 @@ namespace Bookify.Application
             {
                 configuration.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
 
-                configuration.AddOpenBehavior(typeof(LogingBehavior<,>));
+                configuration.AddOpenBehavior(typeof(LoggingBehavior<,>));
 
                 configuration.AddOpenBehavior(typeof(ValidationBehavior<,>));
             });
