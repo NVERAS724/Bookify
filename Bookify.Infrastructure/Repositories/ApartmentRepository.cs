@@ -12,9 +12,6 @@ namespace Bookify.Infrastructure.Repositories
         public ApartmentRepository(ApplicationDbContext dbContext)
             : base(dbContext) { }
 
-        public Task<Apartment?> GetByIdAsync(Guid id, CancellationToken cancellation = default)
-        {
-            throw new NotImplementedException();
-        }
+    
     }
 }

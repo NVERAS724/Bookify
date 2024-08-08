@@ -35,7 +35,7 @@ namespace Bookify.Domain.Bookings
                     currency);
             }
 
-            var totalPrice = Money.Zero();
+            var totalPrice = Money.Zero(currency);
 
             totalPrice += priceForPeriod;
 
