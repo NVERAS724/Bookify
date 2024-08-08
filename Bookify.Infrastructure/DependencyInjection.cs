@@ -102,7 +102,7 @@ namespace Bookify.Infrastructure
         private static void AddAuthorization(IServiceCollection services)
         {
             services.AddScoped<AuthorizationService>();
-            services.AddScoped<IClaimsTransformation, CustomClaimsTransformation>();
+            services.AddTransient<IClaimsTransformation, CustomClaimsTransformation>();
         }
     }
 }
