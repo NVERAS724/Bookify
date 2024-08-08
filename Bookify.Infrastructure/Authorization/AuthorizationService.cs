@@ -43,25 +43,27 @@ namespace Bookify.Infrastructure.Authorization
             return roles;
         }
 
-        //public async Task<HashSet<string>> GetPermissionsForUserAsync(string identityId)
-        //{
-        //    var cacheKey = $"auth:permissions-{identityId}";
 
-        //    var cachedPermissions = await _cacheService.GetAsync<HashSet<string>>(cacheKey);
 
-        //    if (cachedPermissions is not null)
-        //        return cachedPermissions;
+        public async Task<HashSet<string>> GetPermissionsForUserAsync(string identityId)
+        {
+            var cacheKey = $"auth:permissions-{identityId}";
 
-        //    var permissions = await _context.Set<User>()
-        //        .Where(user => user.IdentityId == identityId)
-        //        .SelectMany(user => user.Roles.Select(role => role.Permissions))
-        //        .FirstAsync();
+            //var cachedPermissions = await _cacheService.GetAsync<HashSet<string>>(cacheKey);
 
-        //    var permissionsSet = permissions.Select(p => p.Name).ToHashSet();
+            //if (cachedPermissions is not null)
+            //    return cachedPermissions;
 
-        //    await _cacheService.SetAsync(cacheKey, permissionsSet);
+            var permissions = await _context.Set<User>()
+                .Where(user => user.IdentityId == identityId)
+                .SelectMany(user => user.Roles.Select(role => role.Permissions))
+                .FirstAsync();
 
-        //    return permissionsSet;
-        //}
+            var permissionsSet = permissions.Select(p => p.Name).ToHashSet();
+
+            //await _cacheService.SetAsync(cacheKey, permissionsSet);
+
+            return permissionsSet;
+        }
     }
 }
