@@ -12,22 +12,22 @@ namespace Bookify.Infrastructure.Authorization
     internal sealed class AuthorizationService
     {
         private readonly ApplicationDbContext _context;
-        //private readonly ICacheService _cacheService;
+        private readonly ICacheService _cacheService;
 
-        public AuthorizationService(ApplicationDbContext context)
+        public AuthorizationService(ApplicationDbContext context, ICacheService cacheService)
         {
             _context = context;
-            //_cacheService = cacheService;
+            _cacheService = cacheService;
         }
 
         public async Task<UserRolesResponse> GetRolesForUserAsync(string identityId)
         {
             var cacheKey = $"auth:roles-{identityId}";
 
-            //var cachedRoles = await _cacheService.GetAsync<UserRolesResponse>(cacheKey);
+            var cachedRoles = await _cacheService.GetAsync<UserRolesResponse>(cacheKey);
 
-            //if (cachedRoles is not null)
-            //    return cachedRoles;
+            if (cachedRoles is not null)
+                return cachedRoles;
 
             var roles = await _context.Set<User>()
                 .Where(user => user.IdentityId == identityId)
@@ -38,7 +38,7 @@ namespace Bookify.Infrastructure.Authorization
                 })
                 .FirstAsync();
 
-            //await _cacheService.SetAsync(cacheKey, roles);
+            await _cacheService.SetAsync(cacheKey, roles);
 
             return roles;
         }
@@ -49,10 +49,10 @@ namespace Bookify.Infrastructure.Authorization
         {
             var cacheKey = $"auth:permissions-{identityId}";
 
-            //var cachedPermissions = await _cacheService.GetAsync<HashSet<string>>(cacheKey);
+            var cachedPermissions = await _cacheService.GetAsync<HashSet<string>>(cacheKey);
 
-            //if (cachedPermissions is not null)
-            //    return cachedPermissions;
+            if (cachedPermissions is not null)
+                return cachedPermissions;
 
             var permissions = await _context.Set<User>()
                 .Where(user => user.IdentityId == identityId)
@@ -61,7 +61,7 @@ namespace Bookify.Infrastructure.Authorization
 
             var permissionsSet = permissions.Select(p => p.Name).ToHashSet();
 
-            //await _cacheService.SetAsync(cacheKey, permissionsSet);
+            await _cacheService.SetAsync(cacheKey, permissionsSet);
 
             return permissionsSet;
         }
