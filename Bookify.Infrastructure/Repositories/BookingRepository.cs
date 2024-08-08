@@ -28,7 +28,7 @@ namespace Bookify.Infrastructure.Repositories
             DateRange duration,
             CancellationToken cancellationToken = default)
         {
-            return await _dbContext
+            return await DbContext
                 .Set<Booking>()
                 .AnyAsync(
                     booking =>
