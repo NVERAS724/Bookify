@@ -4,6 +4,7 @@ using System;
 using System.Buffers;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -21,9 +22,18 @@ namespace Bookify.Infrastructure.Caching
 
         public async Task<T> GetAsync<T>(string key, CancellationToken cancellationToken = default)
         {
-            var bytes = await _distributedCache.GetAsync(key, cancellationToken);
+            try
+            {
+                var bytes = await _distributedCache.GetAsync(key, cancellationToken);
 
-            return bytes is null ? default : Deserialize<T>(bytes);
+                return bytes is null ? default : Deserialize<T>(bytes);
+            }
+            catch (Exception)
+            {
+
+                return default;
+            }
+
         }
 
         public Task RemoveAsync(string key, CancellationToken cancellationToken = default)
@@ -35,7 +45,16 @@ namespace Bookify.Infrastructure.Caching
         {
             var bytes = Serialize(value);
 
-            return _distributedCache.SetAsync(key, bytes, CacheOptions.Create(expiration), cancellationToken);
+            try
+            {
+                return _distributedCache.SetAsync(key, bytes, CacheOptions.Create(expiration), cancellationToken);
+            }
+            catch (Exception)
+            {
+
+                return default;
+            }
+
         }
 
         private static T Deserialize<T>(byte[] bytes) => JsonSerializer.Deserialize<T>(bytes);
