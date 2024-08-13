@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bookify.Domain.UnitTests
+namespace Bookify.Domain.UnitTests.Infrastructure
 {
     public abstract class BaseTest
     {
